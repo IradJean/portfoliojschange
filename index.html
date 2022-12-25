@@ -250,8 +250,18 @@
         const spans = document.querySelectorAll('.spanmssg');
         const form = document.querySelector('form');
         const resp = document.querySelector('#resp');
+        //form validation
+        form.addEventListener('submit',(e)=>{
+            // e.preventDefault();
+           form.reset();
+           resp.style.display = "block";
+           setTimeout(function(){
+            resp.style.display = "none";
+           },5000)
+        })
         //validating names and message
         name.addEventListener('focusout', function(){
+            
             const checkString = /^[a-zA-Z0-9]+$/;
             // const checkString2 = /^[a-z\sA-Z0-9]+$/ trying to check for spaced names
             if(!checkString.test(name.value)){
@@ -283,9 +293,7 @@
         // validating message box
          message.addEventListener('focusout', ()=>{
             const messageCheck = /^\s+/;
-            if(
-                message.value ==="" || messageCheck.test(message.value)
-            ){
+            if( message.value ==="" || messageCheck.test(message.value)){
                 spans[2].style.display= 'block';
                 form.addEventListener('submit',(e)=>{
             e.preventDefault();
@@ -297,17 +305,7 @@
             }
         
          })
-
-        //validating form
-        form.addEventListener('submit',(e)=>{
-            // e.preventDefault();
-           form.reset();
-           resp.style.display = "block";
-           setTimeout(function(){
-            resp.style.display = "none";
-           },5000)
-
-        })
+        
         
 
        
